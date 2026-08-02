@@ -52,7 +52,7 @@ bug with a merged-style fix on the fork), conclusion.
 ## 6. Bug report and responsible disclosure
 
 - GHSA-pvc4-crg3-gj44: summary, PoC, root cause, fix, regression tests, timeline
-- GHSA-pjrx-mwv9-j9vf: the rejected report and the lesson (documented behavior)
+- GHSA-pjrx-mwv9-j9vf: declined as documented behavior, then patched upstream exactly as proposed (kimai/kimai PR #6089, merged 2026-08-02)
 - Disclosure process followed (BUG_REPORT.md §4)
 
 ## 7. Developer feedback and reuse

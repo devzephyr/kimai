@@ -63,18 +63,30 @@ reverting it and watching the regression test fail.
 3. Waited for maintainer triage before any public reference.
 4. Prepared the fix + regression tests on the fork for the maintainers to review.
 
-## 2. Second finding (rejected as designed): GHSA-pjrx-mwv9-j9vf
+## 2. Second finding (patched upstream after the report): GHSA-pjrx-mwv9-j9vf
 
 > Administrators with delegated role management can grant ROLE_SUPER_ADMIN.
 
-The maintainer (kevinpapst) reviewed the advisory and closed it as **documented
-behavior**: the `roles_other_profile` / `roles_own_profile` permissions are
-labeled SECURITY ALERT in the official documentation and are intentionally
-super-admin-only by default. Lesson learned: verify the documented threat
-model of the project before filing; a "bug" that matches the documented design
-is not actionable. The HTTP 500 side-effect mentioned in the report could not
-be reproduced on the current codebase (the API call returns 200 with a clean
-JSON payload), so no follow-up was filed.
+Timeline of a finding that was initially declined and ultimately fixed:
+
+1. **Reported privately** via GitHub Security Advisory with a full PoC and a
+   concrete solution (restrict role assignment to the acting user's own level).
+2. **Maintainer's first response** (kevinpapst): closed as *documented
+   behavior* - the `roles_other_profile` / `roles_own_profile` permissions are
+   labeled SECURITY ALERT and are super-admin-only by default. ("I do agree
+   that this probably doesn't make a lot of sense.")
+3. **Upstream fix merged**: [kimai/kimai#6089](https://github.com/kimai/kimai/pull/6089)
+   ("User role management", merged 2026-08-02) implements exactly the proposed
+   restriction - role management now respects the role hierarchy, higher roles
+   can no longer be granted by lower-privileged users, role settings of
+   outranking users can no longer be opened, and unmanaged roles are kept
+   intact on save.
+
+The reporter was credited on the advisory. Lesson learned in both directions:
+verify the documented threat model before filing - and a well-argued report
+can still drive a hardening change even when the first answer is "by design".
+The HTTP 500 side-effect mentioned in the original report could not be
+reproduced on the tested codebase (clean HTTP 200 with correct serialization).
 
 ## 3. Bug report template (for future findings)
 

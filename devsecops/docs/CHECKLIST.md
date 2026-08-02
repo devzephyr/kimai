@@ -34,10 +34,10 @@ Legend: **Done** = automated/artifact complete in this repository ·
 
 | Task | Status | Artifact |
 |---|---|---|
-| Valid security bug found & reported | Done | GHSA-pvc4-crg3-gj44 (triaged) |
-| Reproducible steps documented | Done | BUG_REPORT.md §1 |
+| Valid security bug found & reported | Done | GHSA-pvc4-crg3-gj44 (triaged) + GHSA-pjrx-mwv9-j9vf |
+| Reproducible steps documented | Done | BUG_REPORT.md §1-§2 |
 | Responsible disclosure | Done | private advisory per bughunter policy |
-| Maintainer approval of the bug | Incomplete | advisory triaged; fix PR open for maintainer review (fork PR #1) |
+| Maintainer approval of the bug | Done | GHSA-pjrx patched upstream by the maintainer (kimai/kimai#6089, merged 2026-08-02); GHSA-pvc4 triaged |
 | Developer reviewed the automation | Incomplete | COLLABORATION.md §3 (record from maintainer conversation) |
 | Agreement to reuse majority | Incomplete | COLLABORATION.md §2-§3 |
 | Individual bug report per student | Incomplete | template ready (BUG_REPORT.md §3) - each student writes their own |
